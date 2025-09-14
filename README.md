@@ -1,2 +1,2 @@
-# graphs-tools-demo
+# graphos-tools-demo
 GraphOS tools demo.
