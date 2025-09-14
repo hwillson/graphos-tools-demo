@@ -1,0 +1,9 @@
+subgraphs:
+  products:
+    routing_url: http://localhost:4001
+    schema:
+      file: graph/products.graphql
+  inventory:
+    routing_url: http://localhost:4002
+    schema:
+      file: graph/inventory.graphql

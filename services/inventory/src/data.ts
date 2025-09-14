@@ -6,19 +6,19 @@ export const inventoryData: Inventory[] = [
     id: 'inv-001',
     productId: '1',
     quantity: 25,
-    warehouse: 'North America - Seattle'
+    warehouseLocation: 'North America - Seattle'
   },
   {
     id: 'inv-002',
     productId: '1',
     quantity: 15,
-    warehouse: 'Europe - London'
+    warehouseLocation: 'Europe - London'
   },
   {
     id: 'inv-003',
     productId: '1',
     quantity: 10,
-    warehouse: 'Asia - Tokyo'
+    warehouseLocation: 'Asia - Tokyo'
   },
 
   // Product 2: Wireless Mouse
@@ -26,19 +26,19 @@ export const inventoryData: Inventory[] = [
     id: 'inv-004',
     productId: '2',
     quantity: 150,
-    warehouse: 'North America - Seattle'
+    warehouseLocation: 'North America - Seattle'
   },
   {
     id: 'inv-005',
     productId: '2',
     quantity: 200,
-    warehouse: 'Europe - London'
+    warehouseLocation: 'Europe - London'
   },
   {
     id: 'inv-006',
     productId: '2',
     quantity: 175,
-    warehouse: 'Asia - Tokyo'
+    warehouseLocation: 'Asia - Tokyo'
   },
 
   // Product 3: Mechanical Keyboard
@@ -46,19 +46,19 @@ export const inventoryData: Inventory[] = [
     id: 'inv-007',
     productId: '3',
     quantity: 50,
-    warehouse: 'North America - Seattle'
+    warehouseLocation: 'North America - Seattle'
   },
   {
     id: 'inv-008',
     productId: '3',
     quantity: 35,
-    warehouse: 'Europe - London'
+    warehouseLocation: 'Europe - London'
   },
   {
     id: 'inv-009',
     productId: '3',
     quantity: 40,
-    warehouse: 'Asia - Tokyo'
+    warehouseLocation: 'Asia - Tokyo'
   },
 
   // Product 4: USB-C Hub
@@ -66,19 +66,19 @@ export const inventoryData: Inventory[] = [
     id: 'inv-010',
     productId: '4',
     quantity: 75,
-    warehouse: 'North America - Seattle'
+    warehouseLocation: 'North America - Seattle'
   },
   {
     id: 'inv-011',
     productId: '4',
     quantity: 80,
-    warehouse: 'Europe - London'
+    warehouseLocation: 'Europe - London'
   },
   {
     id: 'inv-012',
     productId: '4',
     quantity: 0,
-    warehouse: 'Asia - Tokyo'
+    warehouseLocation: 'Asia - Tokyo'
   },
 
   // Product 5: Monitor Stand
@@ -86,18 +86,18 @@ export const inventoryData: Inventory[] = [
     id: 'inv-013',
     productId: '5',
     quantity: 30,
-    warehouse: 'North America - Seattle'
+    warehouseLocation: 'North America - Seattle'
   },
   {
     id: 'inv-014',
     productId: '5',
     quantity: 25,
-    warehouse: 'Europe - London'
+    warehouseLocation: 'Europe - London'
   },
   {
     id: 'inv-015',
     productId: '5',
     quantity: 20,
-    warehouse: 'Asia - Tokyo'
+    warehouseLocation: 'Asia - Tokyo'
   }
 ];
