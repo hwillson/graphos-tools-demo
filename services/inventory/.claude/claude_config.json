@@ -1,0 +1,5 @@
+{
+  "name": "inventory",
+  "description": "Inventory service for graphos-tools-demo",
+  "version": "1.0.0"
+}

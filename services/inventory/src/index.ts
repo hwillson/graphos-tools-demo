@@ -1,7 +1,9 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
 import { inventoryData } from './data';
 import { Inventory } from './types';
+import { openApiSpec } from './openapi';
 
 const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 4002;
@@ -9,6 +11,14 @@ const PORT = process.env.PORT ? parseInt(process.env.PORT) : 4002;
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// API Documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiSpec));
+
+// OpenAPI Spec endpoint for clients
+app.get('/openapi.json', (req: Request, res: Response) => {
+  res.json(openApiSpec);
+});
 
 // GET /inventory - List all inventory
 app.get('/inventory', (req: Request, res: Response) => {
@@ -70,6 +80,10 @@ app.use((req: Request, res: Response) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Inventory service running on http://localhost:${PORT}`);
+  console.log(`\n📚 API Documentation:`);
+  console.log(`   - Swagger UI: http://localhost:${PORT}/api-docs`);
+  console.log(`   - OpenAPI JSON: http://localhost:${PORT}/openapi.json`);
+  console.log(`\n🔧 API Endpoints:`);
   console.log(`   - GET /inventory - List all inventory`);
   console.log(`   - GET /inventory/:product_id - Get inventory for specific product`);
   console.log(`   - GET /health - Health check`);
