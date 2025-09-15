@@ -20,8 +20,40 @@ app.get('/openapi.json', (req: Request, res: Response) => {
   res.json(openApiSpec);
 });
 
-// GET /inventory - List all inventory
+// GET /inventory - List all inventory (with optional productId filter)
 app.get('/inventory', (req: Request, res: Response) => {
+  const { productId } = req.query;
+
+  // If productId is provided, filter by it
+  if (productId) {
+    const productInventory = inventoryData.filter(
+      (item: Inventory) => item.productId === String(productId)
+    );
+
+    if (productInventory.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: `No inventory found for product ID: ${productId}`,
+        data: []
+      });
+    }
+
+    // Calculate total quantity across all warehouses
+    const totalQuantity = productInventory.reduce(
+      (sum, item) => sum + item.quantity,
+      0
+    );
+
+    return res.json({
+      success: true,
+      productId: String(productId),
+      totalQuantity,
+      warehouses: productInventory,
+      count: productInventory.length
+    });
+  }
+
+  // Return all inventory if no filter
   res.json({
     success: true,
     data: inventoryData,
@@ -29,34 +61,25 @@ app.get('/inventory', (req: Request, res: Response) => {
   });
 });
 
-// GET /inventory/:product_id - Get inventory for specific product
-app.get('/inventory/:product_id', (req: Request, res: Response) => {
-  const { product_id } = req.params;
+// GET /inventory/:id - Get specific inventory item by ID
+app.get('/inventory/:id', (req: Request, res: Response) => {
+  const { id } = req.params;
 
-  const productInventory = inventoryData.filter(
-    (item: Inventory) => item.productId === product_id
+  const inventoryItem = inventoryData.find(
+    (item: Inventory) => item.id === id
   );
 
-  if (productInventory.length === 0) {
+  if (!inventoryItem) {
     return res.status(404).json({
       success: false,
-      message: `No inventory found for product ID: ${product_id}`,
-      data: []
+      message: `Inventory item not found with ID: ${id}`,
+      data: null
     });
   }
 
-  // Calculate total quantity across all warehouses
-  const totalQuantity = productInventory.reduce(
-    (sum, item) => sum + item.quantity,
-    0
-  );
-
   res.json({
     success: true,
-    productId: product_id,
-    totalQuantity,
-    warehouses: productInventory,
-    count: productInventory.length
+    data: inventoryItem
   });
 });
 
@@ -85,6 +108,7 @@ app.listen(PORT, () => {
   console.log(`   - OpenAPI JSON: http://localhost:${PORT}/openapi.json`);
   console.log(`\n🔧 API Endpoints:`);
   console.log(`   - GET /inventory - List all inventory`);
-  console.log(`   - GET /inventory/:product_id - Get inventory for specific product`);
+  console.log(`   - GET /inventory?productId={id} - Get inventory for specific product`);
+  console.log(`   - GET /inventory/:id - Get specific inventory item by ID`);
   console.log(`   - GET /health - Health check`);
 });

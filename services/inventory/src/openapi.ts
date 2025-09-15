@@ -22,52 +22,15 @@ export const openApiSpec = {
   paths: {
     '/inventory': {
       get: {
-        summary: 'List all inventory',
-        description: 'Retrieves inventory information for all products across all warehouses',
-        tags: ['Inventory'],
-        responses: {
-          '200': {
-            description: 'Successful response with inventory list',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    success: {
-                      type: 'boolean',
-                      example: true
-                    },
-                    data: {
-                      type: 'array',
-                      items: {
-                        $ref: '#/components/schemas/Inventory'
-                      }
-                    },
-                    count: {
-                      type: 'integer',
-                      description: 'Total number of inventory items',
-                      example: 15
-                    }
-                  },
-                  required: ['success', 'data', 'count']
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    '/inventory/{product_id}': {
-      get: {
-        summary: 'Get inventory for specific product',
-        description: 'Retrieves inventory information for a specific product across all warehouses',
+        summary: 'List inventory',
+        description: 'Retrieves inventory information. Can be filtered by productId query parameter.',
         tags: ['Inventory'],
         parameters: [
           {
-            name: 'product_id',
-            in: 'path',
-            required: true,
-            description: 'The ID of the product to retrieve inventory for',
+            name: 'productId',
+            in: 'query',
+            required: false,
+            description: 'Filter inventory by product ID',
             schema: {
               type: 'string',
               example: '1'
@@ -76,46 +39,73 @@ export const openApiSpec = {
         ],
         responses: {
           '200': {
-            description: 'Successful response with product inventory',
+            description: 'Successful response',
             content: {
               'application/json': {
                 schema: {
-                  type: 'object',
-                  properties: {
-                    success: {
-                      type: 'boolean',
-                      example: true
+                  oneOf: [
+                    {
+                      type: 'object',
+                      description: 'Response when no filter is applied',
+                      properties: {
+                        success: {
+                          type: 'boolean',
+                          example: true
+                        },
+                        data: {
+                          type: 'array',
+                          items: {
+                            $ref: '#/components/schemas/Inventory'
+                          }
+                        },
+                        count: {
+                          type: 'integer',
+                          description: 'Total number of inventory items',
+                          example: 15
+                        }
+                      },
+                      required: ['success', 'data', 'count']
                     },
-                    productId: {
-                      type: 'string',
-                      description: 'The product ID',
-                      example: '1'
-                    },
-                    totalQuantity: {
-                      type: 'integer',
-                      description: 'Total quantity across all warehouses',
-                      example: 50
-                    },
-                    warehouses: {
-                      type: 'array',
-                      description: 'Inventory details per warehouse',
-                      items: {
-                        $ref: '#/components/schemas/Inventory'
-                      }
-                    },
-                    count: {
-                      type: 'integer',
-                      description: 'Number of warehouses with this product',
-                      example: 3
+                    {
+                      type: 'object',
+                      description: 'Response when filtered by productId',
+                      properties: {
+                        success: {
+                          type: 'boolean',
+                          example: true
+                        },
+                        productId: {
+                          type: 'string',
+                          description: 'The product ID',
+                          example: '1'
+                        },
+                        totalQuantity: {
+                          type: 'integer',
+                          description: 'Total quantity across all warehouses',
+                          example: 50
+                        },
+                        warehouses: {
+                          type: 'array',
+                          description: 'Inventory details per warehouse',
+                          items: {
+                            $ref: '#/components/schemas/Inventory'
+                          }
+                        },
+                        count: {
+                          type: 'integer',
+                          description: 'Number of warehouses with this product',
+                          example: 3
+                        }
+                      },
+                      required: ['success', 'productId', 'totalQuantity', 'warehouses', 'count']
                     }
-                  },
-                  required: ['success', 'productId', 'totalQuantity', 'warehouses', 'count']
+                  ]
                 }
               }
             }
           },
           '404': {
-            description: 'Product not found',
+            description: 'Product not found (when productId filter is used)',
             content: {
               'application/json': {
                 schema: {
@@ -133,6 +123,72 @@ export const openApiSpec = {
                       type: 'array',
                       items: {},
                       example: []
+                    }
+                  },
+                  required: ['success', 'message', 'data']
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    '/inventory/{id}': {
+      get: {
+        summary: 'Get specific inventory item',
+        description: 'Retrieves a specific inventory item by its unique ID',
+        tags: ['Inventory'],
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            description: 'The unique ID of the inventory item',
+            schema: {
+              type: 'string',
+              example: 'inv-001'
+            }
+          }
+        ],
+        responses: {
+          '200': {
+            description: 'Successful response with inventory item',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    success: {
+                      type: 'boolean',
+                      example: true
+                    },
+                    data: {
+                      $ref: '#/components/schemas/Inventory'
+                    }
+                  },
+                  required: ['success', 'data']
+                }
+              }
+            }
+          },
+          '404': {
+            description: 'Inventory item not found',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    success: {
+                      type: 'boolean',
+                      example: false
+                    },
+                    message: {
+                      type: 'string',
+                      example: 'Inventory item not found with ID: inv-999'
+                    },
+                    data: {
+                      type: 'null',
+                      example: null
                     }
                   },
                   required: ['success', 'message', 'data']
