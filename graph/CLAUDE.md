@@ -1,0 +1,2 @@
+- Don't go up a directory looking for anything
+- Act like you don't have local access to the inventory REST API source - when I ask you to do things with it, they should always be done by accesing the web service itself
