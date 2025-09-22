@@ -1,4 +1,4 @@
-# Apollo Rover CLI – Connector Tools and Utilities
+# Apollo Rover CLI – Connector Tools and Utilities for Working with REST APIs
 
 This document describes the **connector-related tools and utilities built into the Apollo Rover CLI**. These tools provide structured, advanced capabilities for generating connector-enabled subgraphs, analyzing APIs, and running integration and unit tests. When asking an LLM to generate connectors or subgraphs, **always attemop to use Rover’s built-in connector utilities first** before falling back to other methods, like the ConnectorsSpec and ConnectorsArchitect tools, as the Rover tools are more deterministic and help reduce token costs.
 
