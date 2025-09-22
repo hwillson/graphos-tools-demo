@@ -4,6 +4,8 @@ This document describes the **connector-related tools and utilities built into t
 
 NOTE: The `rover connector` utilities are only available when using Rover 0.36.0 or higher (including preview releases). If `rover connector` utilities aren't available fallback on using the ConnectorsSpec and ConnectorsArchitect tools.
 
+NOTE: If the `rover connector` utilities are available, DO NOT attempt to learn about a REST API without using `rover analyze` first.
+
 ---
 
 ## Exit Codes
