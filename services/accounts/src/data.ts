@@ -4,26 +4,26 @@ export const accountsData: Account[] = [
   {
     id: 'acc-001',
     staffMemberId: '1',
-    githubUsername: 'jsmith-dev'
+    githubUsername: 'hwillson'
   },
   {
     id: 'acc-002',
     staffMemberId: '2',
-    githubUsername: 'sarahj-eng'
+    githubUsername: 'lennyburdette'
   },
   {
     id: 'acc-003',
     staffMemberId: '3',
-    githubUsername: 'mwilliams'
+    githubUsername: 'janicewilson-apollo'
   },
   {
     id: 'acc-004',
     staffMemberId: '4',
-    githubUsername: 'emma-brown-dev'
+    githubUsername: 'kbychu'
   },
   {
     id: 'acc-005',
     staffMemberId: '5',
-    githubUsername: 'ddavis-tech'
+    githubUsername: 'debergalis'
   }
 ];

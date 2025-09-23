@@ -3,27 +3,27 @@ import { Staff } from './types';
 export const staffMembers: Staff[] = [
   {
     id: '1',
-    firstName: 'John',
-    lastName: 'Smith'
+    firstName: 'Hugh',
+    lastName: 'Willson'
   },
   {
     id: '2',
-    firstName: 'Sarah',
-    lastName: 'Johnson'
+    firstName: 'Lenny',
+    lastName: 'Burdette'
   },
   {
     id: '3',
-    firstName: 'Michael',
-    lastName: 'Williams'
+    firstName: 'Janice',
+    lastName: 'Wilson'
   },
   {
     id: '4',
-    firstName: 'Emma',
-    lastName: 'Brown'
+    firstName: 'Kevin',
+    lastName: 'Chu'
   },
   {
     id: '5',
-    firstName: 'David',
-    lastName: 'Davis'
+    firstName: 'Matt',
+    lastName: 'Debergalis'
   }
 ];
