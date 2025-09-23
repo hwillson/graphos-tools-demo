@@ -6,7 +6,7 @@ import { Account } from './types';
 import { openApiSpec } from './openapi';
 
 const app = express();
-const PORT = process.env.PORT ? parseInt(process.env.PORT) : 4003;
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 4004;
 
 // Middleware
 app.use(cors());

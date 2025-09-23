@@ -11,7 +11,7 @@ export const openApiSpec = {
   },
   servers: [
     {
-      url: 'http://localhost:4003',
+      url: 'http://localhost:4004',
       description: 'Local development server'
     },
     {

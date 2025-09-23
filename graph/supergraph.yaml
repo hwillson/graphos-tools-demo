@@ -5,6 +5,6 @@ subgraphs:
   #  schema:
   #    file: products.graphql
   staff:
-    routing_url: http://localhost:4002
+    routing_url: http://localhost:4003
     schema:
       file: staff.graphql

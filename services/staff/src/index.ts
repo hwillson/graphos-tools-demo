@@ -3,7 +3,7 @@ import { startStandaloneServer } from '@apollo/server/standalone';
 import { typeDefs } from './schema';
 import { resolvers } from './resolvers';
 
-const PORT = process.env.PORT ? parseInt(process.env.PORT) : 4002;
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 4003;
 
 async function startServer() {
   const server = new ApolloServer({
